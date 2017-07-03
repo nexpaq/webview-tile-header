@@ -21,7 +21,7 @@ if(typeof NexpaqEvent == "undefined") {
 }
 
 var NexpaqHeader = {
-	version: '1.0.5',
+	version: '1.0.6',
 	Events: {
 		BackButtonClicked: new NexpaqEvent('BackButtonClicked')
 	},
@@ -354,6 +354,11 @@ function NexpaqAPIReady() {
 // When API is ready it can override main Nexpaq object we initialized, so plugging back
 document.addEventListener('NexpaqAPIReady', function(event) {
 	Nexpaq.Header = NexpaqHeader;
+	Nexpaq.API.addEventListener('HardwareBackButtonPressed', function() {
+		NexpaqHeader.dispatchEvent('BackButtonClicked', {
+			source: 'HardwareBackButtonPressed'
+		});
+	});
 });
 
 document.addEventListener('DOMContentLoaded', function(event) {
