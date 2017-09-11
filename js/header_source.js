@@ -21,7 +21,7 @@ if(typeof NexpaqEvent == "undefined") {
 }
 
 var NexpaqHeader = {
-	version: '1.0.6',
+	version: '1.0.7',
 	Events: {
 		BackButtonClicked: new NexpaqEvent('BackButtonClicked')
 	},
