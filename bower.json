@@ -1,0 +1,19 @@
+{
+  "name": "webview-tile-header",
+  "description": "Header for webview tiles on Moduware platform",
+  "main": "WebViewTileHeader.js",
+  "authors": [
+    "Alex Chernov",
+    "Hazal Ozcan",
+    "Sapan Tiwari"
+  ],
+  "license": "Apache 2.0",
+  "homepage": "https://github.com/nexpaq/webview-tile-header",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

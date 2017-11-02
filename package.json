@@ -7,7 +7,7 @@
     "uglify-html": "html-minifier --collapse-whitespace --collapse-inline-tag-whitespace --conservative-collapse --remove-attribute-quotes --remove-comments --remove-empty-attributes html/markup.html -o html/markup.min.html",
     "make-css": "node-sass -o css/ sass/style.scss",
     "uglify-css": "uglifycss css/style.css > css/style.min.css",
-    "assemble-header-js": "node scripts/assemble.js js/header_source.js NexpaqHeader.js",
+    "assemble-header-js": "node scripts/assemble.js js/header_source.js WebViewTileHeader.js",
     "make-header": "npm run make-css && npm run uglify-css && npm run uglify-html && npm run assemble-header-js "
   },
   "repository": {
