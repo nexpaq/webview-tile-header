@@ -1,8 +1,8 @@
 {
-  "name": "nexpaq-api",
-  "version": "0.9.1",
-  "description": "nexpaq JS API library",
-  "main": "nexpaqAPI.js",
+  "name": "webview-tile-header",
+  "version": "1.0.8",
+  "description": "Moduware WebView tile header",
+  "main": "WebViewTileHeader.js",
   "scripts": {
     "uglify-html": "html-minifier --collapse-whitespace --collapse-inline-tag-whitespace --conservative-collapse --remove-attribute-quotes --remove-comments --remove-empty-attributes html/markup.html -o html/markup.min.html",
     "make-css": "node-sass -o css/ sass/style.scss",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nexpaq/webview-tile-header"
+    "url": "https://github.com/moduware/webview-tile-header"
   },
   "author": "Alex Chernov, Hazal Ozcan, Sapan Tiwari",
   "license": "ISC",
