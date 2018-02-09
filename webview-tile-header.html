@@ -53,11 +53,6 @@
         user-select: none;
       }
 
-      :host(.nxp-hidden),
-      .nxp-hidden {
-        display: none;
-      }
-
       :host([platform="ios"]:not(.nxp-no-shadow)) {
         border-color: #C8C7CC;
         border-style: solid;
@@ -86,7 +81,7 @@
         outline: none;
       }
 
-      :host > h1 {
+      .title {
         z-index: -1;
         position: absolute;
         top: 0; left: 0;
@@ -202,7 +197,7 @@
 
     </style>
 
-    <h1>[[title]]</h1>
+    <h1 class="title">[[title]]</h1>
     <button class="nxp-btn-back" id="nxp-button-back">
       <svg width="12px" height="15px" viewBox="8 35 12 15" class="nxp-button-back-ios">
           <path d="M10.0158703,41.9904883 C9.9622537,41.6002828 10.0847659,41.1909469 10.3798254,40.8958873 L15.8958873,35.3798254 C16.4016182,34.8740945 17.2192549,34.8717794 17.7300286,35.3825531 C18.2372659,35.8897904 18.2323789,36.7170716 17.7327562,37.2166943 L12.9476424,42.0018082 L17.7327562,46.786922 C18.2384871,47.2926529 18.2408023,48.1102896 17.7300286,48.6210633 C17.2227913,49.1283006 16.39551,49.1234135 15.8958873,48.6237909 L10.3798254,43.107729 C10.0754324,42.8033359 9.95341094,42.3859492 10.0158703,41.9904883 Z" id="Combined-Shape" stroke="none" fill="#D02E3D" fill-rule="evenodd"></path>
@@ -249,3 +244,4 @@
 
     customElements.define(ModuwareWebViewTileHeader.is, ModuwareWebViewTileHeader);
   </script>
+</dom-module>
