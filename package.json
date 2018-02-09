@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/moduware/webview-tile-header/issues"
   },
-  "homepage": "https://github.com/moduware/webview-tile-header#readme"
+  "homepage": "https://github.com/moduware/webview-tile-header#readme",
+  "dependencies": {
+    "@polymer/polymer": "^2.5.0",
+    "@webcomponents/webcomponentsjs": "^1.1.0"
+  }
 }

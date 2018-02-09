@@ -1,0 +1,21 @@
+<link rel="import" href="node_modules/@polymer/polymer/polymer-element.html">
+
+<dom-module id="moduware-header">
+  <template id="styles">
+    <style>
+      :host {}
+    </style>
+
+    <h1>hello</h1>
+  </template>
+
+  <script>
+    class ModuwareWebViewTileHeader extends Polymer.Element {
+      static get is() { return 'moduware-header'; }
+      static get properties() {
+        return {};
+      }
+    }
+    
+    customElements.define(ModuwareWebViewTileHeader.is, ModuwareWebViewTileHeader);
+  </script>
