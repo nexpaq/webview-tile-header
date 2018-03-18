@@ -21,7 +21,7 @@ if(typeof NexpaqEvent == "undefined") {
 }
 
 var NexpaqHeader = {
-	version: '1.0.8',
+	version: '1.0.9',
 	Events: {
 		BackButtonClicked: new NexpaqEvent('BackButtonClicked')
 	},
@@ -347,7 +347,7 @@ if(typeof(Nexpaq) != 'undefined') {
 
 // Nexpaq.API will call 'NexpaqAPIReady function when it is ready, turning it into document event
 var NexpaqAPIReadyEvent = new Event('NexpaqAPIReady');
-function NexpaqAPIReady() {
+window.NexpaqAPIReady = function() {
 	document.dispatchEvent(NexpaqAPIReadyEvent);
 }
 
