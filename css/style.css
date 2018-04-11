@@ -1,6 +1,6 @@
 #nexpaq-header {
   z-index: 10000;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;

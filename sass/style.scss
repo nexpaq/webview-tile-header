@@ -22,7 +22,7 @@ $shadow-android: 0 2px 4px rgba(0, 0, 0, 0.12);
 
 ##{$namespace} {
   z-index: $z-index;
-  position: fixed;
+  position: absolute;
   top: 0; left: 0;
 
   width: 100vw; height: $ios-header-height;
