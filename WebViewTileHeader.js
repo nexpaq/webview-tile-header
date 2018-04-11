@@ -322,6 +322,7 @@ var WebViewTileHeader = {
 			if(data.hasOwnProperty('borderBottom')) {
 				if(typeof data.borderBottom !== "string") {throw "Border-bottom has to be string."}
 				document.querySelector("#nexpaq-header:not(.nxp-no-shadow)").style.boxShadow = data.borderBottom;
+				document.querySelector("#nexpaq-header:not(.nxp-no-shadow)").style.border = data.borderBottom;
 			}
 			if(data.hasOwnProperty('iconColor')) {
 				if(typeof data.iconColor !== "string") {throw "Icon color has to be string."}
