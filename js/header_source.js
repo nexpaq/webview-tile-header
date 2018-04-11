@@ -20,7 +20,7 @@ if(typeof NexpaqEvent == "undefined") {
 	};
 }
 
-var NexpaqHeader = {
+var WebViewTileHeader = {
 	version: '1.0.10',
 	Events: {
 		BackButtonClicked: new NexpaqEvent('BackButtonClicked')
@@ -335,6 +335,8 @@ var NexpaqHeader = {
 		}
 	}
 };
+
+var NexpaqHeader = WebViewTileHeader;
 
 // If header initialized after API just plugging in, otherwise creating main Nexpaq object
 if(typeof(Nexpaq) != 'undefined') {
