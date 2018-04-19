@@ -1,6 +1,6 @@
 {
   "name": "webview-tile-header",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Moduware WebView tile header",
   "main": "WebViewTileHeader.js",
   "scripts": {
