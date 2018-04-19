@@ -21,7 +21,7 @@ if(typeof NexpaqEvent == "undefined") {
 }
 
 var WebViewTileHeader = {
-	version: '1.0.11',
+	version: '1.0.10',
 	Events: {
 		BackButtonClicked: new NexpaqEvent('BackButtonClicked')
 	},

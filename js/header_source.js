@@ -382,3 +382,8 @@ NexpaqHeader.addEventListener('BackButtonClicked', function(event) {
 var nxp_header_html = '%%header_html%%';
 var nxp_header_css = '%%header_styles%%';
 var svg_injector = '%%svg_injector%%';
+
+// Exporting as JS Module
+if(typeof(module) != 'undefined') {
+	module.exports = WebViewTileHeader;
+}
