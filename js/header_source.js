@@ -1,18 +1,18 @@
 /* Event system */
-if(typeof NexpaqEvent == "undefined") {
+if(typeof ModuwareEvent == "undefined") {
 	// Event with name and callbacks
-	window.NexpaqEvent = function(name) {
+	window.ModuwareEvent = function(name) {
 		this.name = name;
 		this.callbacks = [];
 	};
 
 	// We can register callbacks for our event
-	NexpaqEvent.prototype.registerCallback = function(callback){
+	ModuwareEvent.prototype.registerCallback = function(callback){
 		this.callbacks.push(callback);
 	};
 
 	// We can remove callbacks for our event
-	NexpaqEvent.prototype.removeCallback = function(callback){
+	ModuwareEvent.prototype.removeCallback = function(callback){
 		var index = this.callbacks.indexOf(callback);
 		if(index >= 0) {
 			this.callbacks.splice(index, 1);
@@ -21,9 +21,9 @@ if(typeof NexpaqEvent == "undefined") {
 }
 
 var WebViewTileHeader = {
-	version: '1.0.10',
+	version: '1.1.0',
 	Events: {
-		BackButtonClicked: new NexpaqEvent('BackButtonClicked')
+		BackButtonClicked: new ModuwareEvent('BackButtonClicked')
 	},
 	_node: null,
 	_buttons: null,
@@ -80,14 +80,14 @@ var WebViewTileHeader = {
 	create: function(title, root) {
 		title = title || '';
 		root = root || document.body;
-		if(this.exists()) throw "NexpaqHeader already exists!";
+		if(this.exists()) throw "WebviewTileHeader already exists!";
 
 		this._title = title;
 
 		// HTML
 		var node = document.createElement('div');
 		node.id = 'nexpaq-header';
-		node.innerHTML = atob(nxp_header_html);
+		node.innerHTML = atob(webview_header_html);
 		node.children[0].textContent = this._title;
 		var header = this;
 		node.children[1].addEventListener('click', function(e) {
@@ -103,7 +103,7 @@ var WebViewTileHeader = {
 		// CSS
 		var header_style = document.createElement('style');
 		header_style.appendChild(document.createTextNode(''));
-		header_style.textContent = atob(nxp_header_css);
+		header_style.textContent = atob(webview_header_css);
 		document.head.appendChild(header_style);
 	},
 
@@ -136,7 +136,7 @@ var WebViewTileHeader = {
 	},
 
 	remove: function() {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 
 		this._node.parentNode.removeChild(this._node);
 	},
@@ -146,7 +146,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	showShadow: function() {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 		this._node.classList.remove('nxp-no-shadow');
 	},
 	/**
@@ -154,7 +154,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	hideShadow: function() {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 		this._node.classList.add('nxp-no-shadow');
 	},
 	/**
@@ -165,7 +165,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	addButton: function(settings, handler) {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 		var default_settings = {
 			id: null,
 			title: 'action',
@@ -216,7 +216,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	disableButtons: function() {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 		this._buttons.classList.add('nxp-buttons-container--disabled');
 	},
 	/**
@@ -224,7 +224,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	enableButtons: function() {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 		this._buttons.classList.remove('nxp-buttons-container--disabled');
 	},
 	/**
@@ -232,7 +232,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	cleanButtons: function() {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 		this._buttons.innerHTML = '';
 	},
 
@@ -256,7 +256,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	hideBackButton: function() {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 		
 		this._node.classList.add('nxp-back-button-hidden');
 		this._backButton.classList.add('nxp-hidden');
@@ -266,7 +266,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	showBackButton: function() {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 
 		this._node.classList.remove('nxp-back-button-hidden');
 		this._backButton.classList.remove('nxp-hidden');
@@ -278,7 +278,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	setBackButtonIcon: function(icon) {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 
 		var image = this._node.getElementsByClassName('npx-button-back-custom')[0];
 		image.src = icon;
@@ -302,7 +302,7 @@ var WebViewTileHeader = {
 	}
 	*/
 	customize: function(data) {
-		if(!this.exists()) throw "NexpaqHeader not exists!";
+		if(!this.exists()) throw "WebviewTileHeader not exists!";
 
 		if(typeof data !== "object") {
 			throw "Data must be an object";
@@ -337,50 +337,50 @@ var WebViewTileHeader = {
 	}
 };
 
-var NexpaqHeader = WebViewTileHeader;
+// var NexpaqHeader = WebViewTileHeader;
 
 // If header initialized after API just plugging in, otherwise creating main Nexpaq object
 if(typeof(Nexpaq) != 'undefined') {
-	Nexpaq.Header = NexpaqHeader;
+	Nexpaq.Header = WebViewTileHeader;
 } else {
 	window.Nexpaq = {
-		Header: NexpaqHeader
+		Header: WebViewTileHeader
 	};
 }
 
 // Nexpaq.API will call 'NexpaqAPIReady function when it is ready, turning it into document event
-var NexpaqAPIReadyEvent = new Event('NexpaqAPIReady');
-window.NexpaqAPIReady = function() {
-	document.dispatchEvent(NexpaqAPIReadyEvent);
-}
+// var NexpaqAPIReadyEvent = new Event('NexpaqAPIReady');
+// window.NexpaqAPIReady = function() {
+// 	document.dispatchEvent(NexpaqAPIReadyEvent);
+// }
 
-// When API is ready it can override main Nexpaq object we initialized, so plugging back
-document.addEventListener('NexpaqAPIReady', function(event) {
-	Nexpaq.Header = NexpaqHeader;
-	Nexpaq.API.addEventListener('HardwareBackButtonPressed', function() {
-		NexpaqHeader.dispatchEvent('BackButtonClicked', {
+// When API is ready it can override main Webview object we initialized, so plugging back
+document.addEventListener('WebViewApiReady', function(event) {
+	Nexpaq.Header = WebViewTileHeader;
+	Moduware.v0.API.addEventListener('HardwareBackButtonPressed', function() {
+		WebViewTileHeader.dispatchEvent('BackButtonClicked', {
 			source: 'HardwareBackButtonPressed'
 		});
 	});
 });
 
 document.addEventListener('DOMContentLoaded', function(event) {
-	NexpaqHeader._detectCurrentPlatform();
+	WebViewTileHeader._detectCurrentPlatform();
 	var injector_js = atob(svg_injector);
 	eval(injector_js);
 });
 
 // Default back button handler tries to close current instance, 
 // if there are any other callback for back button click, it will do nothing
-NexpaqHeader.addEventListener('BackButtonClicked', function(event) {
-	if(NexpaqHeader.Events.BackButtonClicked.callbacks.length > 1) return;
-	Nexpaq.API.Exit();
+WebViewTileHeader.addEventListener('BackButtonClicked', function(event) {
+	if(WebViewTileHeader.Events.BackButtonClicked.callbacks.length > 1) return;
+	Moduware.v0.API.Exit();
 });
 
 
-// =========== nexpaq header built-in resources ====
-var nxp_header_html = '%%header_html%%';
-var nxp_header_css = '%%header_styles%%';
+// =========== webview tile header built-in resources ====
+var webview_header_html = '%%header_html%%';
+var webview_header_css = '%%header_styles%%';
 var svg_injector = '%%svg_injector%%';
 
 // Exporting as JS Module
