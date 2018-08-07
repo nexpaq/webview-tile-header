@@ -80,7 +80,7 @@ var WebViewTileHeader = {
 	create: function(title, root) {
 		title = title || '';
 		root = root || document.body;
-		if(this.exists()) throw "WebviewTileHeader already exists!";
+		if(this.exists()) throw "WebViewTileHeader already exists!";
 
 		this._title = title;
 
@@ -136,7 +136,7 @@ var WebViewTileHeader = {
 	},
 
 	remove: function() {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 
 		this._node.parentNode.removeChild(this._node);
 	},
@@ -146,7 +146,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	showShadow: function() {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 		this._node.classList.remove('nxp-no-shadow');
 	},
 	/**
@@ -154,7 +154,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	hideShadow: function() {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 		this._node.classList.add('nxp-no-shadow');
 	},
 	/**
@@ -165,7 +165,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	addButton: function(settings, handler) {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 		var default_settings = {
 			id: null,
 			title: 'action',
@@ -216,7 +216,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	disableButtons: function() {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 		this._buttons.classList.add('nxp-buttons-container--disabled');
 	},
 	/**
@@ -224,7 +224,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	enableButtons: function() {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 		this._buttons.classList.remove('nxp-buttons-container--disabled');
 	},
 	/**
@@ -232,7 +232,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	cleanButtons: function() {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 		this._buttons.innerHTML = '';
 	},
 
@@ -256,7 +256,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	hideBackButton: function() {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 		
 		this._node.classList.add('nxp-back-button-hidden');
 		this._backButton.classList.add('nxp-hidden');
@@ -266,7 +266,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	showBackButton: function() {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 
 		this._node.classList.remove('nxp-back-button-hidden');
 		this._backButton.classList.remove('nxp-hidden');
@@ -278,7 +278,7 @@ var WebViewTileHeader = {
 	 * @return {void}
 	 */
 	setBackButtonIcon: function(icon) {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 
 		var image = this._node.getElementsByClassName('npx-button-back-custom')[0];
 		image.src = icon;
@@ -302,7 +302,7 @@ var WebViewTileHeader = {
 	}
 	*/
 	customize: function(data) {
-		if(!this.exists()) throw "WebviewTileHeader not exists!";
+		if(!this.exists()) throw "WebViewTileHeader does not exists!";
 
 		if(typeof data !== "object") {
 			throw "Data must be an object";
