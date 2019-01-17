@@ -1,8 +1,13 @@
-<link rel="import" href="/bower_components/polymer/polymer-element.html">
-<link rel="import" href="/bower_components/polymer/lib/elements/dom-if.html">
+import { PolymerElement, html } from './node_modules/@polymer/polymer/polymer-element.js';
+// import '/node_modules/@polymer/polymer/lib/elements/dom-if.js';
+// import { html } from './node_modules/@polymer/polymer/lib/utils/html-tag.js';
 
-<dom-module id="moduware-header">
-  <template>
+/**
+ * @extends HTMLElement
+ */
+class ModuwareWebViewTileHeader extends PolymerElement {
+  static get template() {
+    return html`
     <style>
       :host,
       *,
@@ -30,8 +35,8 @@
         --gray-color: #606060;
         --title-selecting-border-color: #E4E4E4;
 
-        --text-color: $gray-color;
-        --secondary-text-color: $gray-color;
+        --text-color: \$gray-color;
+        --secondary-text-color: \$gray-color;
         --style-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         --style-shadow-android: 0 2px 4px rgba(0, 0, 0, 0.12);
       }
@@ -206,8 +211,7 @@
     <button class="back-button" on-click="backButtonTapHandler">
       <template is="dom-if" if="{{Equal(backButtonIcon, '')}}">
         <svg width="12px" height="15px" viewBox="8 35 12 15" class="back-button-icon nxp-button-back-ios">
-          <path d="M10.0158703,41.9904883 C9.9622537,41.6002828 10.0847659,41.1909469 10.3798254,40.8958873 L15.8958873,35.3798254 C16.4016182,34.8740945 17.2192549,34.8717794 17.7300286,35.3825531 C18.2372659,35.8897904 18.2323789,36.7170716 17.7327562,37.2166943 L12.9476424,42.0018082 L17.7327562,46.786922 C18.2384871,47.2926529 18.2408023,48.1102896 17.7300286,48.6210633 C17.2227913,49.1283006 16.39551,49.1234135 15.8958873,48.6237909 L10.3798254,43.107729 C10.0754324,42.8033359 9.95341094,42.3859492 10.0158703,41.9904883 Z"
-            id="Combined-Shape" stroke="none" fill="#D02E3D" fill-rule="evenodd"></path>
+          <path d="M10.0158703,41.9904883 C9.9622537,41.6002828 10.0847659,41.1909469 10.3798254,40.8958873 L15.8958873,35.3798254 C16.4016182,34.8740945 17.2192549,34.8717794 17.7300286,35.3825531 C18.2372659,35.8897904 18.2323789,36.7170716 17.7327562,37.2166943 L12.9476424,42.0018082 L17.7327562,46.786922 C18.2384871,47.2926529 18.2408023,48.1102896 17.7300286,48.6210633 C17.2227913,49.1283006 16.39551,49.1234135 15.8958873,48.6237909 L10.3798254,43.107729 C10.0754324,42.8033359 9.95341094,42.3859492 10.0158703,41.9904883 Z" id="Combined-Shape" stroke="none" fill="#D02E3D" fill-rule="evenodd"></path>
         </svg>
         <svg width="16px" height="16px" viewBox="0 0 16 16" class="back-button-icon nxp-button-back-android">
           <polygon class="nxp-svg-shape" transform="translate(-4,-4)" fill-rule="evenodd" fill="#D02E3D" points="20 11 7.8 11 13.4 5.4 12 4 4 12 12 20 13.4 18.6 7.8 13 20 13"></polygon>
@@ -218,61 +222,58 @@
       </template>
     </button>
     <div class="nxp-buttons-container" id="nxp-buttons-container"></div>
-  </template>
+`;
+  }
 
-  <script>
-    class ModuwareWebViewTileHeader extends Polymer.Element {
-      static get is() { return 'moduware-header'; }
-      static get properties() {
-        return {
-          title: {
-            type: String,
-            value: 'Tile'
-          },
-          backButtonIcon: {
-            type: String,
-            value: ''
-          },
-          testvr: {
-            type: Boolean,
-            value: true
-          },
-          platform: {
-            type: String,
-            reflectToAttribute: true,
-            value: function () {
-              let userAgent = navigator.userAgent || navigator.vendor || window.opera;
-              // Windows Phone must come first because its UA also contains "Android"
-              if (/windows phone/i.test(userAgent)) {
-                return 'windows-phone';
-              }
-              if (/android/i.test(userAgent)) {
-                return 'android';
-              }
-              // iOS detection from: http://stackoverflow.com/a/9039885/177710
-              if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return 'ios';
-              }
-              return 'unknown';
-            }
+  static get is() { return 'moduware-header'; }
+  static get properties() {
+    return {
+      title: {
+        type: String,
+        value: 'Tile'
+      },
+      backButtonIcon: {
+        type: String,
+        value: ''
+      },
+      testvr: {
+        type: Boolean,
+        value: true
+      },
+      platform: {
+        type: String,
+        reflectToAttribute: true,
+        value: function () {
+          let userAgent = navigator.userAgent || navigator.vendor || window.opera;
+          // Windows Phone must come first because its UA also contains "Android"
+          if (/windows phone/i.test(userAgent)) {
+            return 'windows-phone';
           }
-        };
+          if (/android/i.test(userAgent)) {
+            return 'android';
+          }
+          // iOS detection from: http://stackoverflow.com/a/9039885/177710
+          if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return 'ios';
+          }
+          return 'unknown';
+        }
       }
+    };
+  }
 
-      backButtonTapHandler(e) {
-        this.dispatchEvent(new CustomEvent('back-button-click', {}));
-      }
+  backButtonTapHandler(e) {
+    this.dispatchEvent(new CustomEvent('back-button-click', {}));
+  }
 
-      Equal(item1, item2) {
-        var val = item1 == item2;
-        return val;
-      }
+  Equal(item1, item2) {
+    var val = item1 == item2;
+    return val;
+  }
 
-      NotEqual(item1, item2) {
-        return item1 != item2;
-      }
-    }
+  NotEqual(item1, item2) {
+    return item1 != item2;
+  }
+}
 
-    window.customElements.define(ModuwareWebViewTileHeader.is, ModuwareWebViewTileHeader);
-  </script>
-</dom-module>
+window.customElements.define(ModuwareWebViewTileHeader.is, ModuwareWebViewTileHeader);
