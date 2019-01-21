@@ -43,7 +43,6 @@ class ModuwareWebViewTileHeaderSpacer extends LitElement {
     super();
   
     this.platform = this.getPlatform();
-    console.log('this.platform', this.platform);
   }
 
   getPlatform () {
