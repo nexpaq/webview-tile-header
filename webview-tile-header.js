@@ -1,5 +1,5 @@
 // import { PolymerElement, html } from './node_modules/@polymer/polymer/polymer-element.js';
-import { LitElement, html } from './node_modules/lit-element/lit-element.js';
+import { LitElement, html } from 'lit-element';
 
 /**
  * @extends HTMLElement
