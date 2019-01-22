@@ -249,7 +249,7 @@ class ModuwareWebViewTileHeader extends LitElement {
         }
       </style>
 
-      <h1 class="title"></h1>${ this.title }</h1>
+      <h1 class="title">${ this.title }</h1>
       <button class="back-button" @click="${this.backButtonTapHandler}">
         ${ this.getBackButtonIcon() }
       </button>
