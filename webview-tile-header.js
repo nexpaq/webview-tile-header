@@ -262,6 +262,7 @@ class ModuwareWebViewTileHeader extends LitElement {
         ${ this.getBackButtonIcon() }
       </button>
       <div class="nxp-buttons-container" id="nxp-buttons-container"></div>
+      <slot name="right-placeholder"></slot>
     `; // end of template html``
   } // end of render()
 
