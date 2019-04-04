@@ -1,5 +1,5 @@
 // import { PolymerElement, html } from './node_modules/@polymer/polymer/polymer-element.js';
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 
 /**
  * @extends HTMLElement
@@ -48,83 +48,87 @@ class ModuwareWebViewTileHeader extends LitElement {
     return 'unknown';
   }
 
-  render() {
-    return html`
-      <style>
+  static get styles() {
+    return [
+      css`
+        :host([hidden]) {
+          display: none;
+        }
+
         :host,
         *,
         * * {
           box-sizing: border-box;
         }
-
+      
         svg {
           width: auto;
         }
-
+      
         :host {
           --style-font-family: Roboto, 'Roboto Regular', Helvetica, Tahoma, sans-serif;
           --style-font-size: 16px;
           --style-background-color: white;
-
+      
           --ios-header-height: 44px;
           --android-header-height: 55px;
           --header-side-padding: 3vw;
-
+      
           --font-size-android: 15px;
           --title-selection-line-height: 45px;
-
+      
           --brand-color: #D02E3D;
           --gray-color: #606060;
           --title-selecting-border-color: #E4E4E4;
-
+      
           --text-color: var(--gray-color);
           --secondary-text-color: var(--gray-color);
           --style-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
           --style-shadow-android: 0 2px 4px rgba(0, 0, 0, 0.12);
         }
-
+      
         :host {
           z-index: 10000;
           position: fixed;
           top: 0;
           left: 0;
-
+      
           width: 100vw;
           height: var(--ios-header-height);
           padding: 0;
-
+      
           font-size: var(--style-font-size);
           font-weight: normal;
           line-height: var(--ios-header-height);
           color: var(--text-color);
           font-family: var(--style-font-family);
           text-align: right;
-
+      
           background-color: var(--style-background-color);
           -webkit-user-select: none;
           user-select: none;
         }
-
+      
         :host([platform="ios"]:not(.nxp-no-shadow)) {
           border-color: #C8C7CC;
           border-style: solid;
           border-width: 0 0 0.5px 0;
         }
-
+      
         :host([platform="android"]) {
           height: var(--android-header-height);
           padding: 0 var(--header-side-padding);
           line-height: var(--android-header-height);
           color: var(--gray-color);
-
+      
           font-size: var(--font-size-android);
           font-weight: 300;
         }
-
+      
         :host([platform="android"]:not(.nxp-no-shadow)) {
           box-shadow: var(--style-shadow-android);
         }
-
+      
         button {
           padding: 0;
           margin: 0;
@@ -132,123 +136,127 @@ class ModuwareWebViewTileHeader extends LitElement {
           border: 0;
           outline: none;
         }
-
+      
         .title {
           z-index: -1;
           position: absolute;
           top: 0;
           left: 0;
-
+      
           width: 100%;
           height: 100%;
           margin: 0;
-
+      
           text-align: center;
           font-size: calc(var(--style-font-size) + 1px);
           line-height: inherit;
           text-transform: inherit;
           color: inherit;
           font-weight: 400;
-
+      
           background-color: transparent;
         }
-
+      
         :host([platform="android"])>h1 {
           text-align: left;
           font-size: calc(var(--font-size-android) + 5px);
           padding-left: 70px;
         }
-
+      
         :host([platform="android"].nxp-back-button-hidden)>h1 {
           padding-left: 16px;
         }
-
+      
         .back-button {
           padding: 0 var(--header-side-padding) !important;
           line-height: inherit;
         }
-
+      
         :host(:not([platform="android"])) .nxp-button-back-android,
         :host([platform="android"]) .nxp-button-back-ios {
           display: none;
         }
-
+      
         :host([platform="android"]) .back-button svg {
           margin-top: -4px;
         }
-
+      
         .back-button-icon {
           display: inline-block;
         }
-
+      
         .nxp-custom-back-button .nxp-button-back-android,
         .nxp-custom-back-button .nxp-button-back-ios {
           display: none;
         }
-
+      
         .nxp-buttons-container {
           display: inline-block;
         }
-
+      
         .nxp-buttons-container.nxp-buttons-container--disabled {
           opacity: 0.3;
           pointer-events: none;
         }
-
+      
         .nxp-buttons-container>button {
           line-height: inherit;
           padding: 0 4vw !important;
           position: relative;
         }
-
+      
         :host([platform="ios"]) .nxp-buttons-container>button {
           color: #D02E3D;
           font-size: 17px;
         }
-
+      
         .nxp-buttons-container>button .nxp-button-number {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translateX(15%) translateY(-85%);
           padding-right: 1px;
-
+      
           display: flex;
           justify-content: center;
           align-items: center;
-
+      
           height: 18px;
           min-width: 18px;
           border: 2px solid white;
           border-radius: 9px;
-
+      
           background-color: #01CF9F;
           font-size: 10px;
           color: white;
           line-height: 1em;
         }
-
+      
         .nxp-buttons-container>button .nxp-button-number:empty {
           display: none;
         }
-
+      
         .nxp-buttons-container>button:last-child {
           padding-right: var(--header-side-padding) !important;
         }
-
+      
         .back-button svg,
         .back-button img,
         .nxp-buttons-container>button>svg,
         .nxp-buttons-container>button>img {
           vertical-align: middle;
         }
-
+      
         .back-button {
           float: left;
           max-width: var(--ios-header-height);
         }
-      </style>
+      `
+    ];
+  }
 
+  render() {
+    return html`
       <h1 class="title">${ this.title }</h1>
       <button class="back-button" @click="${this.backButtonTapHandler}">
         ${ this.getBackButtonIcon() }
