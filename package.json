@@ -21,7 +21,8 @@
     "url": "https://github.com/moduware/webview-tile-header/issues"
   },
   "dependencies": {
-    "lit-element": "^2.0.1"
+    "lit-element": "^2.0.1",
+    "@moduware/lit-utils": "^1.0.0"
   },
   "resolutions": {
     "inherits": "2.0.3",

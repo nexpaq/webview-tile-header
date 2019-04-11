@@ -1,5 +1,6 @@
 // import { PolymerElement, html } from './node_modules/@polymer/polymer/polymer-element.js';
 import { LitElement, html, css } from 'lit-element';
+import { getPlatform } from '@moduware/lit-utils'; 
 
 /**
  * @extends HTMLElement
@@ -11,10 +12,7 @@ class ModuwareWebViewTileHeader extends LitElement {
     return {
       title: {type: String},
       
-      backButtonIcon: {
-        type: String,
-        value: ''
-      },
+      backButtonIcon: { type: String },
       
       platform: {
         type: String,
@@ -27,25 +25,8 @@ class ModuwareWebViewTileHeader extends LitElement {
     super();
 
     this.title = "Tile";
-    this.platform = this.getPlatform();
+    this.platform = getPlatform();
     this.backButtonIcon = '';
-    console.log('this.platform', this.platform);
-  }
-
-  getPlatform() {
-    let userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-      return 'windows-phone';
-    }
-    if (/android/i.test(userAgent)) {
-      return 'android';
-    }
-    // iOS detection from: http://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      return 'ios';
-    }
-    return 'unknown';
   }
 
   static get styles() {
@@ -259,7 +240,7 @@ class ModuwareWebViewTileHeader extends LitElement {
     return html`
       <h1 class="title">${ this.title }</h1>
       <button class="back-button" @click="${this.backButtonTapHandler}">
-        ${ this.getBackButtonIcon() }
+        ${ this.backButtonIcon == '' ? this.getBackButtonIcon() : html`<img src="${this.backButtonIcon}" class="back-button-icon">` }
       </button>
       <div class="nxp-buttons-container" id="nxp-buttons-container"></div>
       <slot name="right-placeholder"></slot>
@@ -270,24 +251,24 @@ class ModuwareWebViewTileHeader extends LitElement {
    * Gets either ios or android back button icons depending on platform
    */
   getBackButtonIcon() {
-    if( this.backButtonIcon == '') {
+    if( this.platform == 'ios') {
       return html`
             <svg width="12px" height="15px" viewBox="8 35 12 15" class="back-button-icon nxp-button-back-ios">
               <path d="M10.0158703,41.9904883 C9.9622537,41.6002828 10.0847659,41.1909469 10.3798254,40.8958873 L15.8958873,35.3798254 C16.4016182,34.8740945 17.2192549,34.8717794 17.7300286,35.3825531 C18.2372659,35.8897904 18.2323789,36.7170716 17.7327562,37.2166943 L12.9476424,42.0018082 L17.7327562,46.786922 C18.2384871,47.2926529 18.2408023,48.1102896 17.7300286,48.6210633 C17.2227913,49.1283006 16.39551,49.1234135 15.8958873,48.6237909 L10.3798254,43.107729 C10.0754324,42.8033359 9.95341094,42.3859492 10.0158703,41.9904883 Z"
                 id="Combined-Shape" stroke="none" fill="#D02E3D" fill-rule="evenodd"></path>
             </svg>
-            <svg width="16px" height="16px" viewBox="0 0 16 16" class="back-button-icon nxp-button-back-android">
-              <polygon class="nxp-svg-shape" transform="translate(-4,-4)" fill-rule="evenodd" fill="#D02E3D" points="20 11 7.8 11 13.4 5.4 12 4 4 12 12 20 13.4 18.6 7.8 13 20 13"></polygon>
-            </svg>
           `;
     } else {
-      return html`<img src="${this.backButtonIcon}" class="back-button-icon">`;
+      return html`
+        <svg width="16px" height="16px" viewBox="0 0 16 16" class="back-button-icon nxp-button-back-android">
+          <polygon class="nxp-svg-shape" transform="translate(-4,-4)" fill-rule="evenodd" fill="#D02E3D" points="20 11 7.8 11 13.4 5.4 12 4 4 12 12 20 13.4 18.6 7.8 13 20 13"></polygon>
+        </svg>
+      `;
     }
   }
 
   backButtonTapHandler(e) {
     this.dispatchEvent(new CustomEvent('back-button-click', {}));
-    console.log('back button clicked!', e.target);
   }
 
 }
