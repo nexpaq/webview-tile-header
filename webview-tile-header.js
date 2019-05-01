@@ -69,7 +69,7 @@ class ModuwareWebViewTileHeader extends LitElement {
         }
       
         :host {
-          z-index: 10000;
+          z-index: var(--header-z-index, 1);
           position: fixed;
           top: 0;
           left: 0;
