@@ -232,6 +232,16 @@ class ModuwareWebViewTileHeader extends LitElement {
           float: left;
           max-width: var(--ios-header-height);
         }
+
+        :host ::slotted([slot='right-placeholder']) {
+          vertical-align: middle;
+          display: inline-flex;
+          color: #d12f3d;
+        }
+        
+        :host([platform='ios']) ::slotted([slot='right-placeholder']) {
+          padding-right: var(--header-side-padding);
+        }
       `
     ];
   }
