@@ -97,11 +97,15 @@ class ModuwareWebViewTileHeader extends LitElement {
           border-width: 0 0 0.5px 0;
         }
 
+        :host([platform="ios"]) {
+          color: var(--text-color)
+        }
+
         :host([platform="android"]) {
           height: var(--android-header-height);
           padding: 0 var(--header-side-padding);
           line-height: var(--android-header-height);
-          color: var(--gray-color);
+          color: var(--text-color);
 
           font-size: var(--font-size-android);
           font-weight: 300;
